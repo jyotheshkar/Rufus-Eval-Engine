@@ -3,7 +3,12 @@
     "allow": [
       "Bash(gh auth:*)",
       "Bash(echo $GITHUB_TOKEN)",
-      "Bash(echo $GH_TOKEN)"
+      "Bash(echo $GH_TOKEN)",
+      "Bash(python backend/scripts/generate_questions.py)",
+      "Bash(python -c \":*)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\Jyothesh karnam\\Downloads"
     ]
   }
 }
