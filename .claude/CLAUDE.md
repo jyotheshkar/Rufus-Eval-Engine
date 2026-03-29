@@ -181,3 +181,34 @@ In Claude Code terminal, say:
 - "phase 1 done, start phase 2" → moves to next phase
 - "I need help with the backend" → reads agents/backend-agent.md
 - "I need help with the frontend" → reads agents/frontend-agent.md
+
+---
+
+## Workflow
+
+- All work happens on feature branches; merge to `main` only when a phase is complete
+- A phase is only complete when: code is written, tests pass, and the feature is manually verified
+- Never push directly to `main` mid-phase
+- Commit messages follow: `feat:`, `fix:`, `chore:`, `test:`, `docs:` prefixes
+- Before starting a new phase, confirm the previous phase's criteria are met
+
+---
+
+## Rules
+
+Detailed conventions live in `.claude/rules/` — read the relevant file before working in that area:
+
+- `.claude/rules/code-style.md` — Python and TypeScript naming, formatting, and structure rules
+- `.claude/rules/testing.md` — pytest patterns for FastAPI, Jest/RTL patterns for Next.js
+- `.claude/rules/api-conventions.md` — FastAPI route structure, Pydantic models, response shapes, mock guard
+
+---
+
+## Claude Instructions
+
+- Read the relevant `rules/` file before writing code in any new area
+- Always check `USE_MOCK=true` is set before running any script that touches the Anthropic API
+- When a phase is complete, say explicitly: "Phase X complete — [list what was built]"
+- Do not start the next phase until the user says so
+- Do not add features, refactor, or clean up code outside the current phase scope
+- If a test fails, fix the root cause — do not skip or comment out the test

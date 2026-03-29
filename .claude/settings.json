@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git:*)",
+      "Bash(pip:*)",
+      "Bash(pip3:*)",
+      "Bash(python:*)",
+      "Bash(python3:*)",
+      "Bash(pytest:*)",
+      "Bash(uvicorn:*)",
+      "Bash(npm:*)",
+      "Bash(npx:*)",
+      "Bash(node:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(echo:*)",
+      "Read(**)",
+      "Write(backend/**)",
+      "Write(frontend/**)",
+      "Write(.claude/**)",
+      "Write(README.md)",
+      "Write(.gitignore)"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Bash(sudo:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Write(.env*)",
+      "Write(*.secret)",
+      "Write(backend/data/eval_results.db)"
+    ]
+  },
+  "env": {
+    "USE_MOCK": "true"
+  },
+  "includeCoAuthoredBy": true
+}
