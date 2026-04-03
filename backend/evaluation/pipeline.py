@@ -1,6 +1,7 @@
 # Evaluation pipeline — orchestrates retrieval, answer generation, judging, and storage
 
 import asyncio
+import json
 import logging
 from datetime import datetime, timezone
 from pathlib import Path
@@ -14,6 +15,7 @@ logger = logging.getLogger(__name__)
 
 PRODUCTS_PATH = Path(__file__).parent.parent / "data" / "products.json"
 INDEX_DIR = Path(__file__).parent.parent / "data" / "faiss_index"
+ADVERSARIAL_PATH = Path(__file__).parent.parent / "data" / "adversarial.json"
 
 
 class EvalPipeline:
@@ -28,7 +30,12 @@ class EvalPipeline:
             "EvalPipeline ready — use_mock=%s", self.rufus.use_mock
         )
 
-    async def run_single(self, question: dict, is_adversarial: bool = False) -> dict:
+    async def run_single(
+        self,
+        question: dict,
+        is_adversarial: bool = False,
+        adversarial_category: str | None = None,
+    ) -> dict:
         """Run one full eval: retrieve → answer → judge.
 
         Args:
@@ -46,7 +53,7 @@ class EvalPipeline:
         rufus_result = await self.rufus.generate_answer(query, products)
         answer = rufus_result["answer"]
 
-        judge_result = await self.judge.score(query, products, answer)
+        judge_result = await self.judge.score(query, products, answer, adversarial_category=adversarial_category)
 
         return {
             "eval_id": str(uuid4()),
@@ -74,6 +81,9 @@ class EvalPipeline:
             },
             "judge_model": judge_result.get("model", "unknown"),
             "is_adversarial": is_adversarial,
+            "adversarial_category": adversarial_category,
+            "adversarial_triggered": judge_result.get("adversarial_triggered", False),
+            "failure_mode_detected": judge_result.get("failure_mode_detected", "none"),
             "usage": rufus_result.get("usage", {}),
         }
 
@@ -102,3 +112,61 @@ class EvalPipeline:
             if delay > 0 and i < len(questions) - 1:
                 await asyncio.sleep(delay)
         return results
+
+    async def run_adversarial(self, delay: float = 0.0) -> dict:
+        """Run all 50 adversarial queries and return a failure mode summary.
+
+        Returns a dict with total count, per-result list, and failure_summary
+        broken down by category with average scores for the targeted dimension.
+        """
+        with open(ADVERSARIAL_PATH) as f:
+            adversarial_queries = json.load(f)
+
+        results = []
+        for i, query in enumerate(adversarial_queries):
+            logger.info("Adversarial %d/%d: %s", i + 1, len(adversarial_queries), query["id"])
+            result = await self.run_single(
+                question=query,
+                is_adversarial=True,
+                adversarial_category=query.get("category"),
+            )
+            results.append(result)
+            if delay > 0 and i < len(adversarial_queries) - 1:
+                await asyncio.sleep(delay)
+
+        failure_summary = self._build_failure_summary(results)
+        return {
+            "total": len(results),
+            "results": results,
+            "failure_summary": failure_summary,
+        }
+
+    def _build_failure_summary(self, results: list[dict]) -> dict:
+        """Aggregate results by adversarial category, computing avg scores per dimension."""
+        categories: dict[str, list[dict]] = {}
+        for r in results:
+            cat = r.get("adversarial_category") or "unknown"
+            categories.setdefault(cat, []).append(r)
+
+        summary = {}
+        for cat, cat_results in categories.items():
+            scores_by_dim: dict[str, list[float]] = {
+                "helpfulness": [], "accuracy": [], "hallucination": [], "safety": [], "overall": []
+            }
+            triggered_count = 0
+            for r in cat_results:
+                for dim in scores_by_dim:
+                    scores_by_dim[dim].append(float(r["scores"].get(dim, 0)))
+                if r.get("adversarial_triggered"):
+                    triggered_count += 1
+
+            summary[cat] = {
+                "count": len(cat_results),
+                "triggered": triggered_count,
+                "failure_rate": round(triggered_count / len(cat_results), 2) if cat_results else 0.0,
+                "avg_scores": {
+                    dim: round(sum(v) / len(v), 2) if v else 0.0
+                    for dim, v in scores_by_dim.items()
+                },
+            }
+        return summary

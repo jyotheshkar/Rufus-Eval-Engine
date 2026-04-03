@@ -17,5 +17,7 @@
   },
   "overall": 9.0,
   "summary": "Strong response. Accurate, helpful, and grounded in the product data.",
+  "adversarial_triggered": false,
+  "failure_mode_detected": "none",
   "model": "mock"
 }
