@@ -1,1 +1,5 @@
-{}
+{
+  "mock_response": "Based on your requirements, I'd recommend the Sony WH-1000XM5 headphones. They offer industry-leading noise cancellation, 30 hours of battery life, and excellent sound quality. At £279.99, they're a premium option, but worth it for daily commuters or remote workers. The Jabra Evolve2 at £89.99 is a great mid-range alternative if budget is a concern.",
+  "model": "mock",
+  "usage": {"input_tokens": 0, "output_tokens": 0}
+}
