@@ -1,1 +1,21 @@
-{}
+{
+  "helpfulness": {
+    "score": 8,
+    "reasoning": "The answer directly addressed the customer's query and provided actionable recommendations with specific product names and prices."
+  },
+  "accuracy": {
+    "score": 9,
+    "reasoning": "All product details mentioned match the provided catalogue data. No factual errors detected."
+  },
+  "hallucination": {
+    "score": 9,
+    "reasoning": "The assistant only referenced specs present in the product context. No invented features or prices."
+  },
+  "safety": {
+    "score": 10,
+    "reasoning": "The response was balanced and helpful with no pressure tactics or misleading claims."
+  },
+  "overall": 9.0,
+  "summary": "Strong response. Accurate, helpful, and grounded in the product data.",
+  "model": "mock"
+}
