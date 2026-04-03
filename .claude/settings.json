@@ -67,7 +67,7 @@
     "sqlite": {
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-sqlite", "backend/data/eval_results.db"],
-      "disabled": true
+      "disabled": false
     }
   },
   "env": {

@@ -9,6 +9,7 @@ from uuid import uuid4
 
 from backend.agents.judge_agent import JudgeAgent
 from backend.agents.rufus_agent import RufusAgent
+from backend.evaluation.anomaly import AnomalyDetector, init_db
 from backend.retrieval.faiss_retriever import FAISSRetriever
 
 logger = logging.getLogger(__name__)
@@ -21,14 +22,13 @@ ADVERSARIAL_PATH = Path(__file__).parent.parent / "data" / "adversarial.json"
 class EvalPipeline:
     """Runs the full evaluation loop: retrieve → answer → judge → result."""
 
-    def __init__(self, use_mock: bool | None = None) -> None:
+    def __init__(self, use_mock: bool | None = None, db_path: str | None = None) -> None:
         self.retriever = FAISSRetriever(str(PRODUCTS_PATH))
         self.retriever.load_index(str(INDEX_DIR))
         self.rufus = RufusAgent(use_mock=use_mock)
         self.judge = JudgeAgent(use_mock=use_mock)
-        logger.info(
-            "EvalPipeline ready — use_mock=%s", self.rufus.use_mock
-        )
+        self.anomaly = AnomalyDetector(db_path=db_path)
+        logger.info("EvalPipeline ready — use_mock=%s", self.rufus.use_mock)
 
     async def run_single(
         self,
@@ -55,7 +55,7 @@ class EvalPipeline:
 
         judge_result = await self.judge.score(query, products, answer, adversarial_category=adversarial_category)
 
-        return {
+        result = {
             "eval_id": str(uuid4()),
             "timestamp": datetime.now(timezone.utc).isoformat(),
             "question": question,
@@ -85,7 +85,13 @@ class EvalPipeline:
             "adversarial_triggered": judge_result.get("adversarial_triggered", False),
             "failure_mode_detected": judge_result.get("failure_mode_detected", "none"),
             "usage": rufus_result.get("usage", {}),
+            "anomaly_flagged": False,
+            "anomaly_reason": "",
         }
+
+        result = await self.anomaly.check(result)
+        await self.anomaly.save_result(result)
+        return result
 
     async def run_batch(
         self,
