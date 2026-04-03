@@ -14,10 +14,18 @@
       "Bash(ls:*)",
       "Bash(cat:*)",
       "Bash(echo:*)",
+      "Bash(mkdir:*)",
+      "Bash(touch:*)",
+      "Bash(find:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(grep:*)",
       "Read(**)",
       "Write(backend/**)",
       "Write(frontend/**)",
       "Write(.claude/**)",
+      "Write(docs/**)",
+      "Write(progress/**)",
       "Write(README.md)",
       "Write(.gitignore)"
     ],
@@ -30,6 +38,37 @@
       "Write(*.secret)",
       "Write(backend/data/eval_results.db)"
     ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if echo \"$CLAUDE_TOOL_INPUT\" | grep -qE \"generate_products|run_eval|run_adversarial\"; then MOCK=$(grep -s USE_MOCK backend/.env 2>/dev/null | cut -d= -f2); if [ \"$MOCK\" != \"true\" ]; then echo \"[BUDGET HOOK] WARNING: USE_MOCK is not true — this script may call the Anthropic API and incur real costs. Set USE_MOCK=true in backend/.env to use mocks.\"; fi; fi'"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if echo \"$CLAUDE_TOOL_RESULT\" | grep -q \"\\.py\"; then echo \"[TEST HOOK] Python file written. Tests will be run in the TDD gate at the end of this phase.\"; fi'"
+          }
+        ]
+      }
+    ]
+  },
+  "mcpServers": {
+    "sqlite": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sqlite", "backend/data/eval_results.db"],
+      "disabled": true
+    }
   },
   "env": {
     "USE_MOCK": "true"

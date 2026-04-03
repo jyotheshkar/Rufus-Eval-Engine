@@ -15,7 +15,7 @@
     "question": "Recommend a good pair of noise-cancelling headphones.",
     "category": "headphones",
     "difficulty": "easy",
-    "intent": "recommendation",
+    "intent": "comparison",
     "expected_product_categories": [
       "headphones"
     ],
@@ -37,7 +37,7 @@
     "question": "What are the top-rated over-ear headphones?",
     "category": "headphones",
     "difficulty": "easy",
-    "intent": "recommendation",
+    "intent": "specific_question",
     "expected_product_categories": [
       "headphones"
     ],
@@ -48,7 +48,7 @@
     "question": "Suggest a budget laptop for students.",
     "category": "laptops",
     "difficulty": "easy",
-    "intent": "recommendation",
+    "intent": "specific_question",
     "expected_product_categories": [
       "laptops"
     ],
@@ -70,7 +70,7 @@
     "question": "Which laptops are good for working from home?",
     "category": "laptops",
     "difficulty": "easy",
-    "intent": "recommendation",
+    "intent": "budget_query",
     "expected_product_categories": [
       "laptops"
     ],
@@ -103,7 +103,7 @@
     "question": "What is the best Android phone right now?",
     "category": "smartphones",
     "difficulty": "easy",
-    "intent": "recommendation",
+    "intent": "specific_question",
     "expected_product_categories": [
       "smartphones"
     ],
@@ -180,7 +180,7 @@
     "question": "Recommend a smartwatch for fitness tracking.",
     "category": "smartwatches",
     "difficulty": "easy",
-    "intent": "recommendation",
+    "intent": "comparison",
     "expected_product_categories": [
       "smartwatches"
     ],
@@ -224,7 +224,7 @@
     "question": "Recommend a good beginner camera.",
     "category": "cameras",
     "difficulty": "easy",
-    "intent": "recommendation",
+    "intent": "specific_question",
     "expected_product_categories": [
       "cameras"
     ],
@@ -235,7 +235,7 @@
     "question": "What is the best camera for travel photography?",
     "category": "cameras",
     "difficulty": "easy",
-    "intent": "recommendation",
+    "intent": "comparison",
     "expected_product_categories": [
       "cameras"
     ],
@@ -367,7 +367,7 @@
     "question": "What is the best monitor for graphic design?",
     "category": "monitors",
     "difficulty": "easy",
-    "intent": "recommendation",
+    "intent": "comparison",
     "expected_product_categories": [
       "monitors"
     ],
@@ -378,7 +378,7 @@
     "question": "Which monitors are best for gaming?",
     "category": "monitors",
     "difficulty": "easy",
-    "intent": "recommendation",
+    "intent": "specific_question",
     "expected_product_categories": [
       "monitors"
     ],
@@ -400,7 +400,7 @@
     "question": "Recommend a good USB-C hub.",
     "category": "accessories",
     "difficulty": "easy",
-    "intent": "recommendation",
+    "intent": "comparison",
     "expected_product_categories": [
       "accessories"
     ],
@@ -411,7 +411,7 @@
     "question": "What is the best wireless mouse?",
     "category": "accessories",
     "difficulty": "easy",
-    "intent": "recommendation",
+    "intent": "specific_question",
     "expected_product_categories": [
       "accessories"
     ],
@@ -455,7 +455,7 @@
     "question": "Recommend a good laptop for programming.",
     "category": "laptops",
     "difficulty": "easy",
-    "intent": "recommendation",
+    "intent": "comparison",
     "expected_product_categories": [
       "laptops"
     ],
@@ -477,7 +477,7 @@
     "question": "What is a good tablet for Netflix?",
     "category": "tablets",
     "difficulty": "easy",
-    "intent": "recommendation",
+    "intent": "budget_query",
     "expected_product_categories": [
       "tablets"
     ],
@@ -488,7 +488,7 @@
     "question": "Which smartwatches track heart rate accurately?",
     "category": "smartwatches",
     "difficulty": "easy",
-    "intent": "feature_query",
+    "intent": "budget_query",
     "expected_product_categories": [
       "smartwatches"
     ],
@@ -620,7 +620,7 @@
     "question": "Recommend a smart speaker for home use.",
     "category": "speakers",
     "difficulty": "easy",
-    "intent": "recommendation",
+    "intent": "comparison",
     "expected_product_categories": [
       "speakers"
     ],
@@ -653,7 +653,7 @@
     "question": "What are the best screen protectors for iPhones?",
     "category": "accessories",
     "difficulty": "easy",
-    "intent": "recommendation",
+    "intent": "comparison",
     "expected_product_categories": [
       "accessories"
     ],
@@ -664,7 +664,7 @@
     "question": "Recommend headphones with good microphone quality.",
     "category": "headphones",
     "difficulty": "easy",
-    "intent": "feature_query",
+    "intent": "budget_query",
     "expected_product_categories": [
       "headphones"
     ],
@@ -719,7 +719,7 @@
     "question": "What are the best action cameras?",
     "category": "cameras",
     "difficulty": "easy",
-    "intent": "recommendation",
+    "intent": "budget_query",
     "expected_product_categories": [
       "cameras"
     ],
@@ -730,7 +730,7 @@
     "question": "Recommend a speaker for a home office.",
     "category": "speakers",
     "difficulty": "easy",
-    "intent": "recommendation",
+    "intent": "comparison",
     "expected_product_categories": [
       "speakers"
     ],
@@ -741,7 +741,7 @@
     "question": "What are the best gaming mousepads?",
     "category": "gaming",
     "difficulty": "easy",
-    "intent": "recommendation",
+    "intent": "comparison",
     "expected_product_categories": [
       "gaming"
     ],
@@ -796,7 +796,7 @@
     "question": "Which phones have the best selfie camera?",
     "category": "smartphones",
     "difficulty": "easy",
-    "intent": "feature_query",
+    "intent": "budget_query",
     "expected_product_categories": [
       "smartphones"
     ],
@@ -885,7 +885,7 @@
     "question": "I need a laptop for video editing that is also lightweight. What do you recommend?",
     "category": "laptops",
     "difficulty": "medium",
-    "intent": "recommendation",
+    "intent": "comparison",
     "expected_product_categories": [
       "laptops"
     ],
@@ -907,7 +907,7 @@
     "question": "I want a smartphone with a good camera and long battery life under \u00a3400.",
     "category": "smartphones",
     "difficulty": "medium",
-    "intent": "recommendation",
+    "intent": "specific_question",
     "expected_product_categories": [
       "smartphones"
     ],
@@ -962,7 +962,7 @@
     "question": "I want to build a gaming setup under \u00a3500. What monitor, keyboard, and mouse should I get?",
     "category": "gaming",
     "difficulty": "medium",
-    "intent": "recommendation",
+    "intent": "specific_question",
     "expected_product_categories": [
       "gaming",
       "monitors",
@@ -986,7 +986,7 @@
     "question": "I need wireless headphones that work well for both video calls and music. Under \u00a3150.",
     "category": "headphones",
     "difficulty": "medium",
-    "intent": "recommendation",
+    "intent": "specific_question",
     "expected_product_categories": [
       "headphones"
     ],
@@ -1019,7 +1019,7 @@
     "question": "I want a tablet that can replace my laptop for light work and media. Budget \u00a3350.",
     "category": "tablets",
     "difficulty": "medium",
-    "intent": "recommendation",
+    "intent": "specific_question",
     "expected_product_categories": [
       "tablets",
       "laptops"
@@ -1087,7 +1087,7 @@
     "question": "What accessories do I need when buying a new laptop?",
     "category": "accessories",
     "difficulty": "medium",
-    "intent": "recommendation",
+    "intent": "specific_question",
     "expected_product_categories": [
       "accessories"
     ],
@@ -1199,7 +1199,7 @@
     "question": "What accessories help reduce eye strain when using a monitor all day?",
     "category": "accessories",
     "difficulty": "medium",
-    "intent": "recommendation",
+    "intent": "comparison",
     "expected_product_categories": [
       "accessories",
       "monitors"
@@ -1211,7 +1211,7 @@
     "question": "I travel a lot for work. What laptop and accessories should I pack?",
     "category": "laptops",
     "difficulty": "medium",
-    "intent": "recommendation",
+    "intent": "budget_query",
     "expected_product_categories": [
       "laptops",
       "accessories"
@@ -1267,7 +1267,7 @@
     "question": "I shoot sports photography. What camera and lens setup should I consider?",
     "category": "cameras",
     "difficulty": "medium",
-    "intent": "recommendation",
+    "intent": "specific_question",
     "expected_product_categories": [
       "cameras",
       "accessories"
@@ -1356,7 +1356,7 @@
     "question": "I want a tablet primarily for Zoom calls and note-taking. What should I get?",
     "category": "tablets",
     "difficulty": "medium",
-    "intent": "recommendation",
+    "intent": "comparison",
     "expected_product_categories": [
       "tablets"
     ],
@@ -1468,7 +1468,7 @@
     "question": "I need a tablet with a keyboard for writing. What is my best option?",
     "category": "tablets",
     "difficulty": "medium",
-    "intent": "recommendation",
+    "intent": "specific_question",
     "expected_product_categories": [
       "tablets",
       "accessories"
@@ -1525,7 +1525,7 @@
     "question": "What is the best monitor for a MacBook user?",
     "category": "monitors",
     "difficulty": "medium",
-    "intent": "recommendation",
+    "intent": "budget_query",
     "expected_product_categories": [
       "monitors"
     ],
@@ -1558,7 +1558,7 @@
     "question": "I need a laptop that can handle Photoshop and Lightroom. What are my options under \u00a31200?",
     "category": "laptops",
     "difficulty": "medium",
-    "intent": "recommendation",
+    "intent": "specific_question",
     "expected_product_categories": [
       "laptops"
     ],
@@ -1580,7 +1580,7 @@
     "question": "What tablet is best for a doctor who needs to view medical images?",
     "category": "tablets",
     "difficulty": "medium",
-    "intent": "recommendation",
+    "intent": "comparison",
     "expected_product_categories": [
       "tablets"
     ],
@@ -1635,7 +1635,7 @@
     "question": "I want a monitor that looks good on a white desk and performs well. What should I get?",
     "category": "monitors",
     "difficulty": "medium",
-    "intent": "recommendation",
+    "intent": "comparison",
     "expected_product_categories": [
       "monitors"
     ],
@@ -1680,7 +1680,7 @@
     "question": "What smartphone should I buy for mobile gaming?",
     "category": "smartphones",
     "difficulty": "medium",
-    "intent": "recommendation",
+    "intent": "comparison",
     "expected_product_categories": [
       "smartphones",
       "gaming"
@@ -1692,7 +1692,7 @@
     "question": "I want a tablet with excellent speaker quality for watching films. Budget \u00a3400.",
     "category": "tablets",
     "difficulty": "medium",
-    "intent": "recommendation",
+    "intent": "comparison",
     "expected_product_categories": [
       "tablets"
     ],
@@ -1714,7 +1714,7 @@
     "question": "What camera should I get for a cycling trip where weight matters?",
     "category": "cameras",
     "difficulty": "medium",
-    "intent": "recommendation",
+    "intent": "comparison",
     "expected_product_categories": [
       "cameras"
     ],
@@ -1758,7 +1758,7 @@
     "question": "What accessories do I need to work comfortably at a standing desk?",
     "category": "accessories",
     "difficulty": "medium",
-    "intent": "recommendation",
+    "intent": "budget_query",
     "expected_product_categories": [
       "accessories"
     ],
@@ -1855,7 +1855,7 @@
     "question": "What tech do I need to set up a professional podcast studio at home for under \u00a3500?",
     "category": "accessories",
     "difficulty": "hard",
-    "intent": "recommendation",
+    "intent": "comparison",
     "expected_product_categories": [
       "accessories",
       "speakers",
@@ -1868,7 +1868,7 @@
     "question": "My partner and I both work from home and share a small office. How do we set up audio so we don't disturb each other?",
     "category": "headphones",
     "difficulty": "hard",
-    "intent": "recommendation",
+    "intent": "comparison",
     "expected_product_categories": [
       "headphones",
       "speakers"
@@ -1880,7 +1880,7 @@
     "question": "I am switching careers to freelance video production. What gear should I prioritise in what order on a limited budget?",
     "category": "cameras",
     "difficulty": "hard",
-    "intent": "recommendation",
+    "intent": "budget_query",
     "expected_product_categories": [
       "cameras",
       "laptops",
@@ -1920,7 +1920,7 @@
     "question": "How do I build the best gaming PC peripheral setup for under \u00a3400 without compromising on anything critical?",
     "category": "gaming",
     "difficulty": "hard",
-    "intent": "recommendation",
+    "intent": "specific_question",
     "expected_product_categories": [
       "gaming",
       "monitors",
@@ -1933,7 +1933,7 @@
     "question": "I want to buy tech gifts for three people: a 12-year-old who loves gaming, a 35-year-old runner, and a 65-year-old retiree. Total budget \u00a3300.",
     "category": "accessories",
     "difficulty": "hard",
-    "intent": "recommendation",
+    "intent": "comparison",
     "expected_product_categories": [
       "gaming",
       "smartwatches",
@@ -1970,7 +1970,7 @@
     "question": "I need to buy tech for a remote team of 5. How should I allocate a \u00a35000 budget across laptops, monitors, and accessories?",
     "category": "laptops",
     "difficulty": "hard",
-    "intent": "recommendation",
+    "intent": "budget_query",
     "expected_product_categories": [
       "laptops",
       "monitors",
@@ -1983,7 +1983,7 @@
     "question": "What smartphone is best for someone who is visually impaired?",
     "category": "smartphones",
     "difficulty": "hard",
-    "intent": "recommendation",
+    "intent": "specific_question",
     "expected_product_categories": [
       "smartphones"
     ],
@@ -1994,7 +1994,7 @@
     "question": "I want to track my health obsessively \u2014 sleep, heart, stress, oxygen. What is the best single wearable?",
     "category": "smartwatches",
     "difficulty": "hard",
-    "intent": "recommendation",
+    "intent": "comparison",
     "expected_product_categories": [
       "smartwatches"
     ],
@@ -2016,7 +2016,7 @@
     "question": "What is the best audio setup for a musician who produces, mixes, and masters at home?",
     "category": "speakers",
     "difficulty": "hard",
-    "intent": "recommendation",
+    "intent": "specific_question",
     "expected_product_categories": [
       "speakers",
       "headphones",
@@ -2051,7 +2051,7 @@
     "question": "I need to monitor two computers simultaneously at my desk. What is the best setup?",
     "category": "monitors",
     "difficulty": "hard",
-    "intent": "recommendation",
+    "intent": "budget_query",
     "expected_product_categories": [
       "monitors",
       "accessories"
@@ -2076,7 +2076,7 @@
     "question": "I am a nurse working 12-hour shifts. What smartwatch features matter most for healthcare workers?",
     "category": "smartwatches",
     "difficulty": "hard",
-    "intent": "recommendation",
+    "intent": "comparison",
     "expected_product_categories": [
       "smartwatches"
     ],
@@ -2111,7 +2111,7 @@
     "question": "I travel internationally every week. What is the perfect minimal tech carry-on?",
     "category": "accessories",
     "difficulty": "hard",
-    "intent": "recommendation",
+    "intent": "comparison",
     "expected_product_categories": [
       "laptops",
       "smartphones",
@@ -2125,7 +2125,7 @@
     "question": "I have RSI in my right wrist. What mouse and keyboard setup will help?",
     "category": "accessories",
     "difficulty": "hard",
-    "intent": "recommendation",
+    "intent": "budget_query",
     "expected_product_categories": [
       "accessories"
     ],
@@ -2136,7 +2136,7 @@
     "question": "What is the best gaming setup for a competitive esports player with a \u00a31500 budget?",
     "category": "gaming",
     "difficulty": "hard",
-    "intent": "recommendation",
+    "intent": "specific_question",
     "expected_product_categories": [
       "gaming",
       "monitors",
@@ -2150,7 +2150,7 @@
     "question": "I am starting a tech review YouTube channel. What is the minimum gear I need to look professional?",
     "category": "cameras",
     "difficulty": "hard",
-    "intent": "recommendation",
+    "intent": "comparison",
     "expected_product_categories": [
       "cameras",
       "speakers",
@@ -2177,7 +2177,7 @@
     "question": "What is the best tech setup for a novelist who needs zero distractions and long battery life?",
     "category": "laptops",
     "difficulty": "hard",
-    "intent": "recommendation",
+    "intent": "specific_question",
     "expected_product_categories": [
       "laptops",
       "accessories"
@@ -2200,7 +2200,7 @@
     "question": "What is the best tech for a primary school classroom on a tight LA budget?",
     "category": "tablets",
     "difficulty": "hard",
-    "intent": "recommendation",
+    "intent": "specific_question",
     "expected_product_categories": [
       "tablets",
       "accessories"

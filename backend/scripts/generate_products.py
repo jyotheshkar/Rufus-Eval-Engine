@@ -24,7 +24,7 @@ CATEGORIES = {
     "accessories": 120,
 }
 
-BATCH_SIZE = 50
+BATCH_SIZE = 20
 
 PROMPT_TEMPLATE = """Generate {count} synthetic Amazon-style products in the category: {category}.
 
@@ -64,8 +64,8 @@ def generate_batch(client: anthropic.Anthropic, category: str, count: int, start
         start_id=start_id,
     )
     message = client.messages.create(
-        model="claude-haiku-20240307",
-        max_tokens=4096,
+        model="claude-haiku-4-5-20251001",
+        max_tokens=8192,
         messages=[{"role": "user", "content": prompt}],
     )
     raw = message.content[0].text.strip()
