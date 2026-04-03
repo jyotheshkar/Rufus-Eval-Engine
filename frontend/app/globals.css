@@ -1,0 +1,4 @@
+/* globals.css — Tailwind CSS base styles for Rufus Eval Engine */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
