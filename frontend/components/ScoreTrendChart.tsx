@@ -26,25 +26,25 @@ function CustomTooltip({ active, payload, label }: { active?: boolean; payload?:
 export function ScoreTrendChart({ data }: ScoreTrendChartProps) {
   if (!data || data.length === 0) {
     return (
-      <div className="flex items-center justify-center h-[240px] text-gray-300 text-sm">
+      <div className="flex items-center justify-center h-[120px] text-gray-300 text-sm">
         No trend data yet
       </div>
     )
   }
 
   return (
-    <ResponsiveContainer width="100%" height={240}>
+    <ResponsiveContainer width="100%" height={120}>
       <LineChart data={data} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
         <CartesianGrid strokeDasharray="3 3" stroke="#eee" vertical={false} />
         <XAxis
           dataKey="date"
-          tick={{ fontSize: 11, fill: '#aaa' }}
+          tick={{ fontSize: 10, fill: '#aaa' }}
           axisLine={{ stroke: '#e5e7eb' }}
           tickLine={false}
         />
         <YAxis
           domain={[0, 10]}
-          tick={{ fontSize: 11, fill: '#aaa' }}
+          tick={{ fontSize: 10, fill: '#aaa' }}
           axisLine={false}
           tickLine={false}
         />
@@ -54,9 +54,9 @@ export function ScoreTrendChart({ data }: ScoreTrendChartProps) {
           type="monotone"
           dataKey="avg_overall"
           stroke="#111"
-          strokeWidth={1.5}
-          dot={{ r: 2.5, fill: '#111', strokeWidth: 0 }}
-          activeDot={{ r: 4, fill: '#111', stroke: '#ddd', strokeWidth: 2 }}
+          strokeWidth={1}
+          dot={{ r: 1.5, fill: '#111', strokeWidth: 0 }}
+          activeDot={{ r: 3, fill: '#111', stroke: '#ddd', strokeWidth: 1 }}
           name="Avg Overall"
         />
       </LineChart>

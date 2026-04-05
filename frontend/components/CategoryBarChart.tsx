@@ -30,23 +30,23 @@ function CustomTooltip({ active, payload, label }: { active?: boolean; payload?:
 export function CategoryBarChart({ data }: CategoryBarChartProps) {
   if (!data || data.length === 0) {
     return (
-      <div className="flex items-center justify-center h-[280px] text-gray-300 text-sm">
+      <div className="flex items-center justify-center h-[140px] text-gray-300 text-sm">
         No data available
       </div>
     )
   }
 
   return (
-    <ResponsiveContainer width="100%" height={280}>
+    <ResponsiveContainer width="100%" height={140}>
       <BarChart
         data={data}
         layout="vertical"
         margin={{ top: 0, right: 20, left: 10, bottom: 0 }}
       >
-        <XAxis type="number" domain={[0, 10]} tick={{ fontSize: 11, fill: '#aaa' }} axisLine={{ stroke: '#e5e7eb' }} tickLine={false} />
-        <YAxis type="category" dataKey="category" tick={{ fontSize: 11, fill: '#666' }} axisLine={false} tickLine={false} width={110} />
+        <XAxis type="number" domain={[0, 10]} tick={{ fontSize: 10, fill: '#aaa' }} axisLine={{ stroke: '#e5e7eb' }} tickLine={false} />
+        <YAxis type="category" dataKey="category" tick={{ fontSize: 10, fill: '#666' }} axisLine={false} tickLine={false} width={100} />
         <Tooltip content={<CustomTooltip />} cursor={{ fill: '#f5f5f5' }} />
-        <Bar dataKey="avg_overall" fill="#222" name="Avg Overall" radius={[0, 2, 2, 0]} barSize={14} />
+        <Bar dataKey="avg_overall" fill="#222" name="Avg Overall" radius={[0, 2, 2, 0]} barSize={8} />
       </BarChart>
     </ResponsiveContainer>
   )
