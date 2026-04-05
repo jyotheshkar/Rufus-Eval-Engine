@@ -1,4 +1,4 @@
-// AnswerTable — tabular view of Q+A eval results with sortable columns
+// AnswerTable — tabular view of Q+A eval results
 'use client'
 
 import { useState } from 'react'
@@ -28,7 +28,7 @@ export function AnswerTable({ evals, page, total, limit, onPageChange }: AnswerT
 
   if (!evals || evals.length === 0) {
     return (
-      <div className="text-center py-12 text-gray-400">
+      <div className="text-center py-12 text-gray-300 text-sm">
         No eval results found.
       </div>
     )
@@ -36,24 +36,24 @@ export function AnswerTable({ evals, page, total, limit, onPageChange }: AnswerT
 
   return (
     <div>
-      <div className="text-sm text-gray-500 mb-2">
-        Showing {evals.length} of {total} results
-      </div>
-      <div className="overflow-x-auto rounded-lg border border-gray-200">
-        <table className="w-full text-sm">
-          <thead className="bg-gray-50 border-b border-gray-200">
+      <p className="text-[11px] text-gray-400 mb-2">
+        {evals.length} of {total} results
+      </p>
+      <div className="overflow-x-auto rounded-lg border border-gray-200 bg-white">
+        <table className="w-full text-[13px]">
+          <thead className="border-b border-gray-100">
             <tr>
-              <th className="text-left px-4 py-3 text-gray-600 font-medium">Question</th>
-              <th className="text-left px-4 py-3 text-gray-600 font-medium">Category</th>
-              <th className="text-center px-4 py-3 text-gray-600 font-medium">Overall</th>
-              <th className="text-center px-4 py-3 text-gray-600 font-medium">H</th>
-              <th className="text-center px-4 py-3 text-gray-600 font-medium">A</th>
-              <th className="text-center px-4 py-3 text-gray-600 font-medium">Ha</th>
-              <th className="text-center px-4 py-3 text-gray-600 font-medium">S</th>
-              <th className="text-center px-4 py-3 text-gray-600 font-medium">Anomaly</th>
+              <th className="text-left px-4 py-2.5 text-[11px] font-medium text-gray-400 uppercase tracking-wider">Question</th>
+              <th className="text-left px-3 py-2.5 text-[11px] font-medium text-gray-400 uppercase tracking-wider">Category</th>
+              <th className="text-center px-3 py-2.5 text-[11px] font-medium text-gray-400 uppercase tracking-wider">Overall</th>
+              <th className="text-center px-3 py-2.5 text-[11px] font-medium text-gray-400 uppercase tracking-wider" title="Helpfulness">H</th>
+              <th className="text-center px-3 py-2.5 text-[11px] font-medium text-gray-400 uppercase tracking-wider" title="Accuracy">A</th>
+              <th className="text-center px-3 py-2.5 text-[11px] font-medium text-gray-400 uppercase tracking-wider" title="Hallucination">Ha</th>
+              <th className="text-center px-3 py-2.5 text-[11px] font-medium text-gray-400 uppercase tracking-wider" title="Safety">S</th>
+              <th className="text-center px-3 py-2.5 text-[11px] font-medium text-gray-400 uppercase tracking-wider">Anomaly</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-gray-50">
             {evals.map((ev) => (
               <>
                 <tr
@@ -61,34 +61,18 @@ export function AnswerTable({ evals, page, total, limit, onPageChange }: AnswerT
                   className="hover:bg-gray-50 cursor-pointer transition-colors"
                   onClick={() => setExpandedId(expandedId === ev.id ? null : ev.id)}
                 >
-                  <td className="px-4 py-3 text-gray-900 max-w-xs">
-                    {truncate(ev.question_text, 60)}
-                  </td>
-                  <td className="px-4 py-3 text-gray-500">{ev.category}</td>
-                  <td className={`px-4 py-3 text-center font-medium ${scoreColor(ev.score_overall)}`}>
-                    {ev.score_overall.toFixed(1)}
-                  </td>
-                  <td className={`px-4 py-3 text-center ${scoreColor(ev.score_helpfulness)}`}>
-                    {ev.score_helpfulness.toFixed(1)}
-                  </td>
-                  <td className={`px-4 py-3 text-center ${scoreColor(ev.score_accuracy)}`}>
-                    {ev.score_accuracy.toFixed(1)}
-                  </td>
-                  <td className={`px-4 py-3 text-center ${scoreColor(ev.score_hallucination)}`}>
-                    {ev.score_hallucination.toFixed(1)}
-                  </td>
-                  <td className={`px-4 py-3 text-center ${scoreColor(ev.score_safety)}`}>
-                    {ev.score_safety.toFixed(1)}
-                  </td>
-                  <td className="px-4 py-3 text-center">
+                  <td className="px-4 py-2.5 text-black max-w-md whitespace-normal">{ev.question_text}</td>
+                  <td className="px-3 py-2.5 text-gray-400">{ev.category}</td>
+                  <td className={`px-3 py-2.5 text-center font-medium ${scoreColor(ev.score_overall)}`}>{ev.score_overall.toFixed(1)}</td>
+                  <td className={`px-3 py-2.5 text-center ${scoreColor(ev.score_helpfulness)}`}>{ev.score_helpfulness.toFixed(1)}</td>
+                  <td className={`px-3 py-2.5 text-center ${scoreColor(ev.score_accuracy)}`}>{ev.score_accuracy.toFixed(1)}</td>
+                  <td className={`px-3 py-2.5 text-center ${scoreColor(ev.score_hallucination)}`}>{ev.score_hallucination.toFixed(1)}</td>
+                  <td className={`px-3 py-2.5 text-center ${scoreColor(ev.score_safety)}`}>{ev.score_safety.toFixed(1)}</td>
+                  <td className="px-3 py-2.5 text-center">
                     {ev.anomaly_flagged ? (
-                      <span className="inline-block px-2 py-0.5 bg-red-100 text-red-700 rounded text-xs">
-                        Yes
-                      </span>
+                      <span className="text-red-600 text-[11px] font-medium">Yes</span>
                     ) : (
-                      <span className="inline-block px-2 py-0.5 bg-gray-100 text-gray-500 rounded text-xs">
-                        No
-                      </span>
+                      <span className="text-gray-300 text-[11px]">No</span>
                     )}
                   </td>
                 </tr>
@@ -97,13 +81,13 @@ export function AnswerTable({ evals, page, total, limit, onPageChange }: AnswerT
                     <td colSpan={8} className="px-4 py-4">
                       <div className="space-y-2">
                         <div>
-                          <span className="font-medium text-gray-700">Rufus Answer:</span>
-                          <p className="text-gray-600 mt-1 whitespace-pre-wrap">{ev.rufus_answer}</p>
+                          <p className="text-[11px] font-medium text-gray-400 uppercase tracking-wider mb-1">Rufus Answer</p>
+                          <p className="text-[13px] text-gray-600 whitespace-pre-wrap leading-relaxed">{ev.rufus_answer}</p>
                         </div>
                         {ev.anomaly_reason && (
-                          <div>
-                            <span className="font-medium text-red-600">Anomaly Reason:</span>
-                            <p className="text-gray-600 mt-1">{ev.anomaly_reason}</p>
+                          <div className="pt-1">
+                            <p className="text-[11px] font-medium text-red-500 uppercase tracking-wider mb-1">Anomaly Reason</p>
+                            <p className="text-[13px] text-gray-500">{ev.anomaly_reason}</p>
                           </div>
                         )}
                       </div>
@@ -120,17 +104,17 @@ export function AnswerTable({ evals, page, total, limit, onPageChange }: AnswerT
         <button
           onClick={() => onPageChange(page - 1)}
           disabled={page <= 1}
-          className="px-4 py-2 text-sm border border-gray-200 rounded-lg text-gray-700 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+          className="px-3 py-1.5 text-[13px] text-gray-400 hover:text-black disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
         >
           Previous
         </button>
-        <span className="text-sm text-gray-500">
-          Page {page} of {totalPages}
+        <span className="text-[11px] text-gray-400">
+          {page} / {totalPages}
         </span>
         <button
           onClick={() => onPageChange(page + 1)}
           disabled={page >= totalPages}
-          className="px-4 py-2 text-sm border border-gray-200 rounded-lg text-gray-700 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+          className="px-3 py-1.5 text-[13px] text-gray-400 hover:text-black disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
         >
           Next
         </button>

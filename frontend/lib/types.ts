@@ -9,6 +9,8 @@ export interface EvalResult {
   difficulty: string
   is_adversarial: boolean
   adversarial_category: string | null
+  adversarial_triggered: boolean
+  failure_mode_detected: string | null
   rufus_answer: string
   score_helpfulness: number
   score_accuracy: number

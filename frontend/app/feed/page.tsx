@@ -2,26 +2,18 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
 import { getEvals } from '@/lib/api'
 import type { EvalResult } from '@/lib/types'
 import { AnswerTable } from '@/components/AnswerTable'
 
 const CATEGORIES = [
-  '',
-  'Electronics',
-  'Books',
-  'Clothing',
-  'Home & Kitchen',
-  'Sports',
-  'Beauty',
-  'Toys',
-  'Automotive',
-  'Food',
-  'Health',
+  '', 'headphones', 'laptops', 'smartphones', 'tablets', 'smartwatches',
 ]
 
 const LIMIT = 20
+
+const selectClass =
+  'bg-white border border-gray-200 rounded px-3 py-1.5 text-[13px] text-black focus:outline-none focus:ring-1 focus:ring-gray-300'
 
 export default function FeedPage() {
   const [evals, setEvals] = useState<EvalResult[]>([])
@@ -38,8 +30,7 @@ export default function FeedPage() {
       setError(null)
       try {
         const resp = await getEvals({
-          page,
-          limit: LIMIT,
+          page, limit: LIMIT,
           category: category || undefined,
           is_adversarial: isAdversarial,
         })
@@ -68,73 +59,41 @@ export default function FeedPage() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
-      {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">Answer Feed</h1>
-        <div className="h-1 w-16 bg-red-600 mt-2 rounded" />
-      </div>
+    <div className="max-w-6xl mx-auto px-6 py-8">
+      <h1 className="text-sm font-semibold text-black mb-1">Answer Feed</h1>
+      <p className="text-[13px] text-gray-400 mb-6">Evaluated Q&amp;A pairs with per-dimension scores</p>
 
-      {/* Nav */}
-      <nav className="flex gap-4 mb-8">
-        <Link href="/" className="px-4 py-2 border border-gray-200 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors">
-          Overview
-        </Link>
-        <Link href="/feed" className="px-4 py-2 bg-red-600 text-white rounded-lg text-sm font-medium">
-          Answer Feed
-        </Link>
-        <Link href="/analysis" className="px-4 py-2 border border-gray-200 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors">
-          Weak Spot Analysis
-        </Link>
-        <Link href="/adversarial" className="px-4 py-2 border border-gray-200 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors">
-          Adversarial Report
-        </Link>
-      </nav>
-
-      {/* Filters */}
       <div className="flex gap-4 mb-6 flex-wrap">
         <div>
-          <label htmlFor="category-filter" className="block text-sm text-gray-500 mb-1">Category</label>
-          <select
-            id="category-filter"
-            value={category}
-            onChange={handleCategoryChange}
-            className="border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-400"
-          >
-            <option value="">All categories</option>
+          <label htmlFor="category-filter" className="block text-[11px] font-medium text-gray-400 uppercase tracking-wider mb-1">Category</label>
+          <select id="category-filter" value={category} onChange={handleCategoryChange} className={selectClass}>
+            <option value="">All</option>
             {CATEGORIES.filter(Boolean).map((c) => (
               <option key={c} value={c}>{c}</option>
             ))}
           </select>
         </div>
         <div>
-          <label htmlFor="adversarial-filter" className="block text-sm text-gray-500 mb-1">Type</label>
+          <label htmlFor="adversarial-filter" className="block text-[11px] font-medium text-gray-400 uppercase tracking-wider mb-1">Type</label>
           <select
             id="adversarial-filter"
             value={isAdversarial === null ? '' : String(isAdversarial)}
             onChange={handleAdversarialChange}
-            className="border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-400"
+            className={selectClass}
           >
-            <option value="">All types</option>
+            <option value="">All</option>
             <option value="false">Standard</option>
             <option value="true">Adversarial</option>
           </select>
         </div>
       </div>
 
-      {/* Table */}
       {loading ? (
-        <p className="text-gray-500 py-8">Loading...</p>
+        <p className="text-gray-300 text-sm py-8">Loading...</p>
       ) : error ? (
-        <p className="text-red-600 py-8">{error}</p>
+        <p className="text-red-500 text-sm py-8">{error}</p>
       ) : (
-        <AnswerTable
-          evals={evals}
-          page={page}
-          total={total}
-          limit={LIMIT}
-          onPageChange={setPage}
-        />
+        <AnswerTable evals={evals} page={page} total={total} limit={LIMIT} onPageChange={setPage} />
       )}
     </div>
   )

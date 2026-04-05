@@ -1,4 +1,4 @@
-// ScoreCard — displays a single eval dimension score with label
+// ScoreCard — KPI card for eval dimension scores
 
 interface ScoreCardProps {
   title: string
@@ -9,12 +9,14 @@ interface ScoreCardProps {
 
 export function ScoreCard({ title, value, subtitle, accent = false }: ScoreCardProps) {
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
-      <p className="text-sm text-gray-500 uppercase tracking-wide">{title}</p>
-      <p className={`text-3xl font-bold mt-2 ${accent ? 'text-red-600' : 'text-gray-900'}`}>
+    <div className="rounded-lg border border-gray-200 bg-white p-5">
+      <p className="text-[11px] font-medium text-gray-400 uppercase tracking-wider mb-3">{title}</p>
+      <p className={`text-2xl font-semibold tracking-tight ${accent ? 'text-red-600' : 'text-black'}`}>
         {value}
       </p>
-      {subtitle && <p className="text-sm text-gray-500 mt-1">{subtitle}</p>}
+      {subtitle && (
+        <p className="text-[11px] text-gray-400 mt-1.5">{subtitle}</p>
+      )}
     </div>
   )
 }

@@ -1,4 +1,4 @@
-// tailwind.config.ts — Tailwind CSS configuration for Rufus Eval Engine
+// tailwind.config.ts — Tailwind CSS configuration
 import type { Config } from 'tailwindcss'
 
 const config: Config = {

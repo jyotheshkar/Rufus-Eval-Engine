@@ -1,4 +1,4 @@
-// CategoryBarChart — Recharts bar chart of scores broken down by product category
+// CategoryBarChart — horizontal bar chart of scores by product category
 'use client'
 
 import {
@@ -15,26 +15,38 @@ interface CategoryBarChartProps {
   data: CategoryStat[]
 }
 
+function CustomTooltip({ active, payload, label }: { active?: boolean; payload?: { value: number }[]; label?: string }) {
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-white border border-gray-200 rounded px-3 py-2 shadow-sm text-xs">
+        <p className="text-gray-400 mb-0.5">{label}</p>
+        <p className="font-semibold text-black">{payload[0].value.toFixed(2)} / 10</p>
+      </div>
+    )
+  }
+  return null
+}
+
 export function CategoryBarChart({ data }: CategoryBarChartProps) {
   if (!data || data.length === 0) {
     return (
-      <div className="flex items-center justify-center h-[300px] text-gray-400">
+      <div className="flex items-center justify-center h-[280px] text-gray-300 text-sm">
         No data available
       </div>
     )
   }
 
   return (
-    <ResponsiveContainer width="100%" height={300}>
+    <ResponsiveContainer width="100%" height={280}>
       <BarChart
         data={data}
         layout="vertical"
-        margin={{ top: 5, right: 20, left: 100, bottom: 5 }}
+        margin={{ top: 0, right: 20, left: 10, bottom: 0 }}
       >
-        <XAxis type="number" domain={[0, 10]} tick={{ fontSize: 12 }} stroke="#9ca3af" />
-        <YAxis type="category" dataKey="category" tick={{ fontSize: 12 }} stroke="#9ca3af" width={90} />
-        <Tooltip />
-        <Bar dataKey="avg_overall" fill="#DC2626" name="Avg Overall" />
+        <XAxis type="number" domain={[0, 10]} tick={{ fontSize: 11, fill: '#aaa' }} axisLine={{ stroke: '#e5e7eb' }} tickLine={false} />
+        <YAxis type="category" dataKey="category" tick={{ fontSize: 11, fill: '#666' }} axisLine={false} tickLine={false} width={110} />
+        <Tooltip content={<CustomTooltip />} cursor={{ fill: '#f5f5f5' }} />
+        <Bar dataKey="avg_overall" fill="#222" name="Avg Overall" radius={[0, 2, 2, 0]} barSize={14} />
       </BarChart>
     </ResponsiveContainer>
   )

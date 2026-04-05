@@ -64,3 +64,15 @@ export async function getAnomalies(): Promise<AnomalyItem[]> {
 export async function getAdversarialSummary(): Promise<AdversarialSummary> {
   return fetchJson('/adversarial/summary')
 }
+
+export async function getDataProducts(): Promise<Record<string, unknown>[]> {
+  return fetchJson('/data/products')
+}
+
+export async function getDataQuestions(): Promise<Record<string, unknown>[]> {
+  return fetchJson('/data/questions')
+}
+
+export async function getDataAdversarial(): Promise<Record<string, unknown>[]> {
+  return fetchJson('/data/adversarial')
+}

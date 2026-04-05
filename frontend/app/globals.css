@@ -1,4 +1,23 @@
-/* globals.css — Tailwind CSS base styles for Rufus Eval Engine */
+/* globals.css — light mode base styles */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #f0f0f0;
+    color: #111;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: #111;
+    color: #fff;
+  }
+}
