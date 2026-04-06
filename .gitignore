@@ -17,7 +17,6 @@ out/
 .env.production
 
 # Data & DB
-backend/data/eval_results.db
 backend/data/faiss_index/
 
 # OS

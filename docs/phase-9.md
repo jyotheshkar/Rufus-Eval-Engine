@@ -51,12 +51,12 @@ Phases 1–8 built a working system locally. Phase 9 makes it accessible to anyo
 
 ## Deployment Instructions
 
-### Backend → Railway
-1. Create project at railway.app
-2. Connect GitHub repo → root directory: `/backend`
-3. Set env vars: `ANTHROPIC_API_KEY`, `USE_MOCK=false`, `ENVIRONMENT=production`
-4. Railway uses `Procfile` to start: `uvicorn backend.main:app --host 0.0.0.0 --port $PORT`
-5. Copy the Railway URL
+### Backend → Render (free)
+1. Go to render.com → New Web Service → connect GitHub repo
+2. Settings auto-detected from `render.yaml` at repo root
+3. Add env var: `ANTHROPIC_API_KEY`
+4. Deploy — build takes ~3 minutes, copies DB from repo
+5. Copy the Render URL (e.g. `https://rufus-eval-engine-api.onrender.com`)
 
 ### Frontend → Vercel
 1. Connect repo at vercel.com/new → root directory: `frontend`

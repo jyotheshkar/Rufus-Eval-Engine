@@ -1,0 +1,17 @@
+# render.yaml — Render.com deployment config for the FastAPI backend
+services:
+  - type: web
+    name: rufus-eval-engine-api
+    runtime: python
+    rootDir: .
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: USE_MOCK
+        value: "false"
+      - key: ENVIRONMENT
+        value: production
+      - key: PYTHON_VERSION
+        value: "3.11.9"

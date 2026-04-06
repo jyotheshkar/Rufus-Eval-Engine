@@ -49,7 +49,7 @@ Rufus answers millions of shopping questions. This system automatically judges w
 | Vector Search | FAISS (cosine similarity over sentence-transformers embeddings) |
 | LLM | Claude Haiku (Anthropic API) |
 | Storage | SQLite + JSON |
-| Deployment | Vercel (frontend), Railway (backend) |
+| Deployment | Vercel (frontend), Render (backend) |
 
 ## Project Structure
 
@@ -144,24 +144,26 @@ USE_MOCK=false python backend/scripts/run_eval.py --count 20
 
 ## Deployment
 
-### Backend → Railway
+### Backend → Render (free)
 
-1. Create a project at [railway.app](https://railway.app)
-2. Connect your GitHub repo → select `rufus-eval-engine`
-3. Set root directory: `/backend`
-4. Add environment variables:
-   - `ANTHROPIC_API_KEY` — your Anthropic key
-   - `USE_MOCK` — `false`
-   - `ENVIRONMENT` — `production`
-5. Railway auto-deploys via `Procfile`
+1. Go to [render.com](https://render.com) → New → Web Service
+2. Connect your GitHub repo (`Rufus-Eval-Engine`)
+3. Settings are auto-detected from `render.yaml`:
+   - **Build command:** `pip install -r backend/requirements.txt`
+   - **Start command:** `uvicorn backend.main:app --host 0.0.0.0 --port $PORT`
+4. Add environment variable: `ANTHROPIC_API_KEY` → your Anthropic key
+5. Deploy — first build takes ~3 minutes
+6. Copy the Render URL (e.g. `https://rufus-eval-engine-api.onrender.com`)
 
-### Frontend → Vercel
+> Note: Render free tier spins down after 15 min of inactivity. First request after sleep takes ~30s.
 
-1. Connect repo at [vercel.com/new](https://vercel.com/new)
+### Frontend → Vercel (free)
+
+1. Go to [vercel.com/new](https://vercel.com/new) → Import `Rufus-Eval-Engine`
 2. Set root directory: `frontend`
 3. Add environment variable:
-   - `NEXT_PUBLIC_API_URL` — your Railway backend URL (e.g. `https://rufus-eval-engine.up.railway.app`)
-4. Deploy
+   - `NEXT_PUBLIC_API_URL` → your Render backend URL (e.g. `https://rufus-eval-engine-api.onrender.com`)
+4. Deploy — done in ~1 minute
 
 ## Adversarial Test Categories
 
