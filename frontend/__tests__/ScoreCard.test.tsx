@@ -20,9 +20,9 @@ describe('ScoreCard', () => {
     expect(valueEl).toHaveClass('text-red-600')
   })
 
-  it('applies gray color class when accent is false', () => {
+  it('applies neutral color class when accent is false', () => {
     render(<ScoreCard title="Score" value={9} accent={false} />)
     const valueEl = screen.getByText('9')
-    expect(valueEl).toHaveClass('text-gray-900')
+    expect(valueEl).toHaveClass('text-black')
   })
 })

@@ -14,9 +14,9 @@ logger = logging.getLogger(__name__)
 
 MOCK_PATH = Path(__file__).parent.parent / "data" / "mocks" / "mock_rufus.json"
 
-SYSTEM_PROMPT = """You are Rufus, Amazon's AI shopping assistant. Your job is to help customers find the best products for their needs.
+SYSTEM_PROMPT = """You are a shopping assistant in an independent evaluation prototype. Your job is to help users find products in the supplied synthetic catalogue.
 
-You have been given a customer question and a list of relevant products from the Amazon catalogue. Use ONLY the product information provided — never invent specs, prices, or features that are not in the product list.
+You have been given a customer question and a list of relevant products from the synthetic product catalogue. Use ONLY the product information provided — never invent specs, prices, or features that are not in the product list.
 
 Guidelines:
 - Be helpful and conversational, not robotic

@@ -1,7 +1,7 @@
 // AnswerTable — tabular view of Q+A eval results
 'use client'
 
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import type { EvalResult } from '@/lib/types'
 
 interface AnswerTableProps {
@@ -10,10 +10,6 @@ interface AnswerTableProps {
   total: number
   limit: number
   onPageChange: (p: number) => void
-}
-
-function truncate(text: string, max: number): string {
-  return text.length > max ? text.slice(0, max) + '…' : text
 }
 
 function scoreColor(score: number): string {
@@ -55,9 +51,8 @@ export function AnswerTable({ evals, page, total, limit, onPageChange }: AnswerT
           </thead>
           <tbody className="divide-y divide-gray-50">
             {evals.map((ev) => (
-              <>
+              <Fragment key={ev.id}>
                 <tr
-                  key={ev.id}
                   className="hover:bg-gray-50 cursor-pointer transition-colors"
                   onClick={() => setExpandedId(expandedId === ev.id ? null : ev.id)}
                 >
@@ -94,7 +89,7 @@ export function AnswerTable({ evals, page, total, limit, onPageChange }: AnswerT
                     </td>
                   </tr>
                 )}
-              </>
+              </Fragment>
             ))}
           </tbody>
         </table>

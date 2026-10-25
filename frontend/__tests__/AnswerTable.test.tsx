@@ -12,6 +12,8 @@ const mockEval: EvalResult = {
   difficulty: 'medium',
   is_adversarial: false,
   adversarial_category: null,
+  adversarial_triggered: false,
+  failure_mode_detected: null,
   rufus_answer: 'I recommend the MacBook Pro...',
   score_helpfulness: 8.0,
   score_accuracy: 8.5,

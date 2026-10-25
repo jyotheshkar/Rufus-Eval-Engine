@@ -1,12 +1,5 @@
-// next.config.js — Next.js configuration for Rufus Eval Engine frontend
+// Keep Next.js type and lint checks enabled for production builds.
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-}
+const nextConfig = {}
 
 module.exports = nextConfig
