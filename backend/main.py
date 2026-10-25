@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI(
     title="Rufus Eval Engine API",
-    description="LLM evaluation framework for the Rufus AI shopping assistant",
+    description="Independent synthetic shopping-assistant evaluation prototype",
     version="1.0.0",
 )
 

@@ -8,6 +8,7 @@ jest.mock('recharts', () => ({
   YAxis: () => <div />,
   CartesianGrid: () => <div />,
   Tooltip: () => <div />,
+  ReferenceLine: () => <div />,
 }))
 
 import React from 'react'
@@ -16,9 +17,9 @@ import { ScoreTrendChart } from '../components/ScoreTrendChart'
 import type { TrendPoint } from '../lib/types'
 
 describe('ScoreTrendChart', () => {
-  it('renders "No data available" when data is empty', () => {
+  it('renders "No trend data yet" when data is empty', () => {
     render(<ScoreTrendChart data={[]} />)
-    expect(screen.getByText('No data available')).toBeInTheDocument()
+    expect(screen.getByText('No trend data yet')).toBeInTheDocument()
   })
 
   it('renders without crashing with sample data', () => {

@@ -112,8 +112,8 @@ export default function DatasetPage() {
     return matchesSearch && matchesCategory
   })
 
-  const productCategories = [...new Set(products.map((p) => p.category))]
-  const adversarialCategories = [...new Set(adversarial.map((a) => a.category))]
+  const productCategories = Array.from(new Set(products.map((p) => p.category)))
+  const adversarialCategories = Array.from(new Set(adversarial.map((a) => a.category)))
 
   function getFilterOptions(): { value: string; label: string }[] {
     if (tab === 'products') return productCategories.map((c) => ({ value: c, label: c }))
