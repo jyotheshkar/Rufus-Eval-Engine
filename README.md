@@ -89,16 +89,27 @@ browser configuration and must never contain a credential.
 
 ## Running the Full Mock Pipeline
 
-From the repository root, with the backend dependencies installed:
+From the repository root, with the backend dependencies installed, build the
+retrieval index explicitly before the first evaluation run:
 
 ```bash
+python backend/scripts/build_index.py
 python backend/scripts/run_eval.py --mock --limit 10
 ```
 
-The option is `--limit`, not `--count`. This command writes evaluation results
-to the local SQLite database. The pipeline creates a missing FAISS index; an
-explicit `python backend/scripts/build_index.py` also rewrites the embeddings
-in `backend/data/products.json`. Review those local changes before committing.
+The index-building step loads `all-MiniLM-L6-v2`, which may download model
+files on first use, embeds the catalogue, saves files under
+`backend/data/faiss_index/`, and rewrites `backend/data/products.json` with
+the generated embeddings. Review those local changes before committing.
+
+The evaluation pipeline loads an existing index; it does **not** create a
+missing index automatically. `--mock` bypasses Anthropic answer/judge requests
+only: the full pipeline still loads the embedding model and performs retrieval.
+For a cached/offline run, both the model files and the index must already exist.
+The focused agent checks below avoid this retrieval path.
+
+The evaluation option is `--limit`, not `--count`. Evaluation results are
+written to the local SQLite database.
 
 Live evaluations require a local API key and an explicit `USE_MOCK=false`
 setting. They incur provider charges; no fixed per-question cost is promised.
