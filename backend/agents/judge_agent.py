@@ -1,5 +1,6 @@
 # LLM-as-a-judge agent — scores Rufus answers on 4 dimensions using Claude Haiku
 
+import asyncio
 import json
 import logging
 import os
@@ -93,7 +94,7 @@ class JudgeAgent:
         if use_mock is None:
             use_mock = os.getenv("USE_MOCK", "true").lower() == "true"
         self.use_mock = use_mock
-        self.client = anthropic.Anthropic() if not use_mock else None
+        self.client = anthropic.Anthropic(timeout=30.0, max_retries=2) if not use_mock else None
         logger.info("JudgeAgent initialised — use_mock=%s", self.use_mock)
 
     async def score(
@@ -128,7 +129,8 @@ class JudgeAgent:
         )
 
         try:
-            response = self.client.messages.create(
+            response = await asyncio.to_thread(
+                self.client.messages.create,
                 model="claude-haiku-4-5-20251001",
                 max_tokens=600,
                 system=SYSTEM_PROMPT,
