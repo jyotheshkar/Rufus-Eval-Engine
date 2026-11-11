@@ -1,5 +1,10 @@
 # Rufus Eval Engine
 
+## Architecture and maintenance
+
+[Technical architecture, source boundaries, scalability decisions and verification](docs/ARCHITECTURE_MAINTENANCE.md) documents the current implementation and its limits. Maintenance dated 11 November 2026 is separate from the original study or project work.
+
+
 An independent portfolio prototype for evaluating a **simulated shopping assistant**.
 It combines product retrieval, generated answers, a four-dimension LLM judge,
 adversarial queries and a dashboard.

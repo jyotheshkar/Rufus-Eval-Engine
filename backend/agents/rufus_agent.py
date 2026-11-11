@@ -1,5 +1,6 @@
 # Rufus shopping assistant agent — generates answers using Claude Haiku + retrieved products
 
+import asyncio
 import json
 import logging
 import os
@@ -34,7 +35,7 @@ class RufusAgent:
         if use_mock is None:
             use_mock = os.getenv("USE_MOCK", "true").lower() == "true"
         self.use_mock = use_mock
-        self.client = anthropic.Anthropic() if not use_mock else None
+        self.client = anthropic.Anthropic(timeout=30.0, max_retries=2) if not use_mock else None
         logger.info("RufusAgent initialised — use_mock=%s", self.use_mock)
 
     async def generate_answer(self, query: str, products: list[dict]) -> dict:
@@ -49,7 +50,8 @@ class RufusAgent:
         user_prompt = self._build_user_prompt(query, product_context)
 
         try:
-            response = self.client.messages.create(
+            response = await asyncio.to_thread(
+                self.client.messages.create,
                 model="claude-haiku-4-5-20251001",
                 max_tokens=400,
                 system=SYSTEM_PROMPT,
